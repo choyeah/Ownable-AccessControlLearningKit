@@ -34,10 +34,6 @@ describe("Start Example AccessControl test", async () => {
 
   describe("Test hasRole", () => {
     it("Should  transferOwnership corrrectly for the Example Ownable Contract", async () => {
-      console.log(
-        "await accessControl.DEFAULT_ADMIN_ROLE()",
-        await accessControl.DEFAULT_ADMIN_ROLE()
-      );
       const isAdmin = await accessControl.hasRole(
         await accessControl.DEFAULT_ADMIN_ROLE(),
         owner.address
@@ -51,11 +47,6 @@ describe("Start Example AccessControl test", async () => {
       const NEW_ROLE = ethers.utils.id("NEW_ROLE");
       console.log("NEW_ROLE", NEW_ROLE);
       await accessControl.grantRole(NEW_ROLE, newRoleAccount.address);
-      console.log(
-        "accessControl.getRoleAdmin(NEW_ROLE)",
-        await accessControl.getRoleAdmin(NEW_ROLE)
-      );
-      expect(await accessControl.getRoleAdmin(NEW_ROLE)).to.equal(NEW_ROLE);
       expect(await accessControl.hasRole(NEW_ROLE, newRoleAccount.address)).to
         .be.true;
     });
